@@ -8,14 +8,21 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject private var feedService = FeedService()
+
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        TabView {
+            FeedView()
+                .tabItem {
+                    Label("Feed", systemImage: "list.bullet")
+                }
+
+            LikesView()
+                .tabItem {
+                    Label("Likes", systemImage: "heart.fill")
+                }
         }
-        .padding()
+        .environmentObject(feedService)
     }
 }
 
