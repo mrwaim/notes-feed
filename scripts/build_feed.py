@@ -18,7 +18,7 @@ SCRIPT_DIR = Path(__file__).parent
 PROJECT_ROOT = SCRIPT_DIR.parent
 CHARACTERS_DIR = PROJECT_ROOT / "characters"
 TWEETS_DIR = CHARACTERS_DIR / "tweets"
-RESOURCES_DIR = PROJECT_ROOT / "NotesFeed" / "Resources"
+OUTPUT_DIR = PROJECT_ROOT / "output"
 
 
 def load_character_profiles():
@@ -52,7 +52,7 @@ def load_all_tweets():
 
 def main():
     # Ensure Resources directory exists
-    RESOURCES_DIR.mkdir(parents=True, exist_ok=True)
+    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
     # Load data
     print("Loading character profiles...")
@@ -63,17 +63,23 @@ def main():
     tweets = load_all_tweets()
     print(f"  Found {len(tweets)} tweets")
 
-    # Randomize tweet order
-    random.shuffle(tweets)
+    # Sort by date (newest first), randomize within the same date
+    for tweet in tweets:
+        dt = datetime.fromisoformat(tweet["created_at"])
+        tweet["_date"] = dt.date()
+    random.shuffle(tweets)  # shuffle first so within-date order is random
+    tweets.sort(key=lambda t: t["_date"], reverse=True)
+    for tweet in tweets:
+        del tweet["_date"]
 
     # Write characters.json
-    characters_path = RESOURCES_DIR / "characters.json"
+    characters_path = OUTPUT_DIR / "characters.json"
     with open(characters_path, "w") as f:
         json.dump(characters, f, indent=2)
     print(f"Wrote {characters_path}")
 
     # Write feed.json
-    feed_path = RESOURCES_DIR / "feed.json"
+    feed_path = OUTPUT_DIR / "feed.json"
     with open(feed_path, "w") as f:
         json.dump(tweets, f, indent=2)
     print(f"Wrote {feed_path}")

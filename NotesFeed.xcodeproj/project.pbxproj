@@ -92,6 +92,7 @@
 		D2DD630A2F252A360070E6F7 = {
 			isa = PBXGroup;
 			children = (
+				D2DD63532F252B000070E6F7 /* GeneratedData */,
 				D2DD63152F252A360070E6F7 /* NotesFeed */,
 				D2DD63262F252A3A0070E6F7 /* NotesFeedTests */,
 				D2DD63302F252A3A0070E6F7 /* NotesFeedUITests */,
@@ -117,7 +118,6 @@
 				D2DD63502F252B000070E6F7 /* Models */,
 				D2DD63512F252B000070E6F7 /* Services */,
 				D2DD63522F252B000070E6F7 /* Views */,
-				D2DD63532F252B000070E6F7 /* Resources */,
 				D2DD631A2F252A390070E6F7 /* Assets.xcassets */,
 				D2DD631C2F252A390070E6F7 /* Preview Content */,
 			);
@@ -152,13 +152,14 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		D2DD63532F252B000070E6F7 /* Resources */ = {
+		D2DD63532F252B000070E6F7 /* GeneratedData */ = {
 			isa = PBXGroup;
 			children = (
 				D2DD63462F252B000070E6F7 /* feed.json */,
 				D2DD63472F252B000070E6F7 /* characters.json */,
 			);
-			path = Resources;
+			name = GeneratedData;
+			path = output;
 			sourceTree = "<group>";
 		};
 		D2DD631C2F252A390070E6F7 /* Preview Content */ = {

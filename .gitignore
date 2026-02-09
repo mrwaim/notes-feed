@@ -9,5 +9,18 @@ DerivedData/
 *.xcuserstate
 xcuserdata/
 
+# Imported character data (synced from notes)
+characters/*
+!characters/.gitkeep
+!characters/thoughts/
+characters/thoughts/*
+!characters/thoughts/.gitkeep
+!characters/tweets/
+characters/tweets/*
+!characters/tweets/.gitkeep
+
+# Generated feed data
+output/
+
 # macOS
 .DS_Store
